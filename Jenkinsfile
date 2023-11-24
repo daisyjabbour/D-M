@@ -4,16 +4,24 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                // Checkout the code from the repository
+                git 'https://github.com/daisyjabbour/D-M.git'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'your build commands here'
+                // Your build steps go here
+                sh 'mvn clean install'
             }
         }
 
-        // Add more stages as needed
+        stage('Deploy') {
+            steps {
+                // Your deployment steps go here
+                sh './deploy.sh'
+            }
+        }
     }
 }
+
